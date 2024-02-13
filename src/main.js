@@ -8,6 +8,6 @@ import 'vue3-easy-data-table/dist/style.css';
 
 createApp(App).mount('#app')
 createApp(App).use(router).mount('#app')
-const app = createApp(App);
-app.component('EasyDataTable', Vue3EasyDataTable);
-app.mount('#app')
+// const app = createApp(App);
+// app.component('EasyDataTable', Vue3EasyDataTable);
+// app.mount('#app')

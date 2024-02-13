@@ -1,23 +1,19 @@
 <template>
 
 	<div class="app">
-		<template v-if="isLoggedin">
+		
 			<dashboard />
 			<Sidebar />
-    		<router-view />
-			
-
-		</template>
-	
- 	</div>
+			<router-view/>
+	</div>
 
 </template>
 
 <script setup>
 import Sidebar from "./components/Sidebar.vue";
-import { ref } from 'vue'
 
-const isLoggedin = ref (true)
+
+
 
 
 
