@@ -1,11 +1,9 @@
 <template>
 	
 <aside :class="`${is_expanded && 'is-expanded'}`">
-	<div class="logo">
-		<!-- <img src="../assets/vue.svg" alt=""> -->
-		<span class="material-icons p-display">person</span>
-		<h3>NICTHS Progress Monitoring</h3>
-	</div>
+	<h3>Progress Monitoring System</h3>
+	<i class="pi pi-user" style="font-size: 2rem"></i>
+
 	<!-- Gravatar input <div v-if="gravatarURL">
       <img :src="gravatarURL" alt="Gravatar Image" class="rounded-image"/>
     </div> -->
@@ -13,7 +11,7 @@
 
 	<div class="menu-toggle-wrap">
 		<button class="menu-toggle" @click="ToggleMenu">
-			<span class="material-icons">keyboard_double_arrow_right</span>
+			<span class="pi pi-angle-double-right"></span>
 		</button>
 	</div>
 
@@ -61,7 +59,7 @@
 
 <script setup>
 	import { ref } from 'vue';
-	
+	import 'primeicons/primeicons.css'
 
 	const is_expanded = ref (localStorage.getItem("is_expanded") === "true")
 
@@ -217,6 +215,11 @@ aside {
 		.footer {
 			opacity: 0;
 		}
+	}
+	.pi {
+		font-size: 1.5rem;
+		transition: 0.2s ease-in-out;
+		color: var(--light)
 	}
 
 	@media (max-width: 1024px) {
