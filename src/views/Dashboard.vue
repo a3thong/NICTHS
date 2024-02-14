@@ -24,11 +24,9 @@
         <pie :data="data2" :options="options" style="height: 250px; width: 70%;" />
         </div>
         <div class="chart">
-        <pie :data="data3" :options="options" style="height: 250px; width: 70%;" />
+        <Line :data="data3" :options="options" style="height: 250px; width: 70%;" />
         </div>
-        <!-- <div class="bar-graph-container">
-           <canvas id="barGraph"></canvas>
-         </div> -->
+
         
       </div>
     
@@ -46,8 +44,7 @@ import { ref, onMounted, computed, inject, DeprecationTypes } from 'vue'
 import { LMap, LTileLayer, LGeoJson, LControl, LControlZoom } from "@vue-leaflet/vue-leaflet";
 import "leaflet/dist/leaflet.css"
 import { Chart as ChartJS, ArcElement,CategoryScale, LinearScale,  PointElement,  LineElement,  Title, Tooltip, Legend } from 'chart.js'
-import { Doughnut } from 'vue-chartjs'
-import { Pie, Line, Bar } from 'vue-chartjs'
+import { Pie, Doughnut, Line } from 'vue-chartjs'
 
 
 // to do put names, putting REGION restrictions, specific regions display, 
@@ -63,6 +60,23 @@ let center = ref([12.8797, 121.7740])
 const options = computed(() => ({
 
   }));
+  
+  fetch('/PH_REGION.json')
+    .then(response => response.json())
+    .then(data => {
+      // Iterate over each region in the JSON data
+      data.regions.forEach(region => {
+        // Extract coordinates and name
+        const coordinates = region.coordinates;
+        const name = region.Name;
+
+        // Create a marker with name as a popup
+        L.marker(coordinates).addTo(LMap)
+          .bindPopup(name);
+      });
+    })
+    .catch(error => console.error('Error fetching JSON:', error));
+
   onMounted(fetchGeojson);
 
   // restriction depends on user CO,RO,PO deligate graphs kung anong area ang dinidisplay
@@ -97,50 +111,6 @@ const data3 = ref({
     }
   ]
 })
-
-// bar graph
-
-// var barGraphData = {
-//     labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-//     datasets: [{
-//       label: 'My First Dataset',
-//       data: [12, 19, 3, 5, 2, 3],
-//       backgroundColor: [
-//         'rgba(255, 99, 132, 0.2)',
-//         'rgba(54, 162, 235, 0.2)',
-//         'rgba(255, 206, 86, 0.2)',
-//         'rgba(75, 192, 192, 0.2)',
-//         'rgba(153, 102, 255, 0.2)',
-//         'rgba(255, 159, 64, 0.2)'
-//       ],
-//       borderColor: [
-//         'rgba(255, 99, 132, 1)',
-//         'rgba(54, 162, 235, 1)',
-//         'rgba(255, 206, 86, 1)',
-//         'rgba(75, 192, 192, 1)',
-//         'rgba(153, 102, 255, 1)',
-//         'rgba(255, 159, 64, 1)'
-//       ],
-//       borderWidth: 1
-//     }]
-//   };
-
-//   // Chart options
-//   var barGraphCanvas = document.getElementById('barGraph').getContext('2d');
-//   var barGraph = new Chart(barGraphCanvas, {
-//     type: 'bar',
-//     data: barGraphData,
-//     options: barGraphOptions
-//   });
-//   var barGraphOptions = {
-//     scales: {
-//       y: {
-//         beginAtZero: true
-//       }
-//     }
-//   };
- 
-
 
 </script>
 
@@ -177,6 +147,9 @@ const data3 = ref({
   and (max-device-width: 480px)
   and (-webkit-min-device-pixel-ratio: 2) {
 
+  body {
+    font-size: 14px;
+  }
 }
 
 </style>
