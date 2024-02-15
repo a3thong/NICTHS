@@ -1,16 +1,17 @@
 <template> 
     <main class="home-page">
         <h1>Dashboard</h1> 
-      
         <p>This is the Dashboard Page</p>
         <div>
+         
            <input type="date">
         </div>
         <div class="container">
            <div class="map">
               <l-map style="height: 100%; width: 100%" :zoom="zoom" :center="center" :options="{zoomControl: true}" :useGlobalLeaflet="false">
                  <l-tile-layer :url="url" :attribution="attribution"></l-tile-layer>
-                   <l-geo-json :geojson="geojson"  >
+                 
+                   <l-geo-json :geojson="geojson"  :options="options">
                     </l-geo-json>
               </l-map>
             </div>
@@ -57,27 +58,19 @@ geojson.value = await response.json();
 };
 let zoom = ref(6)
 let center = ref([12.8797, 121.7740])
+const attribution = ref("Philippines")
+const onEachFeatureFunction = computed(() => {
+    return (feature, layer) => {
+      layer.bindTooltip(feature.properties.Name,{ permanent: true, sticky: true });
+      
+    };
+});
 const options = computed(() => ({
-
+      onEachFeature: onEachFeatureFunction.value,
+      // filter: filterFunction.value,
   }));
-  
-  fetch('/PH_REGION.json')
-    .then(response => response.json())
-    .then(data => {
-      // Iterate over each region in the JSON data
-      data.regions.forEach(region => {
-        // Extract coordinates and name
-        const coordinates = region.coordinates;
-        const name = region.Name;
 
-        // Create a marker with name as a popup
-        L.marker(coordinates).addTo(LMap)
-          .bindPopup(name);
-      });
-    })
-    .catch(error => console.error('Error fetching JSON:', error));
 
-  onMounted(fetchGeojson);
 
   // restriction depends on user CO,RO,PO deligate graphs kung anong area ang dinidisplay
 
@@ -111,6 +104,9 @@ const data3 = ref({
     }
   ]
 })
+
+
+onMounted(fetchGeojson);
 
 </script>
 
