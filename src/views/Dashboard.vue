@@ -42,12 +42,12 @@ import { ref, onMounted, computed, inject, DeprecationTypes } from 'vue'
 import { LMap, LTileLayer, LGeoJson, LControl, LControlZoom } from "@vue-leaflet/vue-leaflet";
 import "leaflet/dist/leaflet.css"
 import Chart from 'primevue/chart';
-import Calendar from 'primevue/calendar';
+
 
 
 
 // calendar 
-const date = ref();
+
 // to do put names, putting REGION restrictions, specific regions display, 
 
 const url = ref('whitebg.png');
