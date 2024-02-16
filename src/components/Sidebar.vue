@@ -1,8 +1,10 @@
 <template>
+
+	
 	
 <aside :class="`${is_expanded && 'is-expanded'}`">
 	<h3>Progress Monitoring System</h3>
-	<i class="pi pi-user" style="font-size: 2rem"></i>
+	<i class="pi pi-user" style="font-size: 2rem padding: auto; padding-bottom: 2rem;"></i>
 
 	<!-- Gravatar input <div v-if="gravatarURL">
       <img :src="gravatarURL" alt="Gravatar Image" class="rounded-image"/>
@@ -11,7 +13,7 @@
 
 	<div class="menu-toggle-wrap">
 		<button class="menu-toggle" @click="ToggleMenu">
-			<span class="pi pi-angle-double-right"></span>
+			<i class="pi pi-angle-double-right" style="font-size: 2rem;"></i>
 		</button>
 	</div>
 
@@ -60,9 +62,9 @@
 <script setup>
 	import { ref } from 'vue';
 	import 'primeicons/primeicons.css'
+	
 
 	const is_expanded = ref (localStorage.getItem("is_expanded") === "true")
-
 	const ToggleMenu = () => {
 		is_expanded.value = !is_expanded.value
 
@@ -195,7 +197,7 @@ aside {
 		width: var(--sidebar-width);
 
 		.menu-toggle-wrap {
-			top: -3rem;
+			top: -4rem;
 			
 			.menu-toggle {
 				transform: rotate(-180deg);

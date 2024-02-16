@@ -3,6 +3,7 @@
 
     <main class="home-page">
         <h2>Dashboard</h2>
+        
         <div class="container">       
           <!-- map -->
            <div class="map">
