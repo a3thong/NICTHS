@@ -87,7 +87,7 @@ const setChartData = () => {
     const documentStyle = getComputedStyle(document.documentElement);
 
     return {
-        labels: ['Region1', 
+        labels: [ 'Region1', 
                   'Region2', 
                   'Region3', 
                   'Region4-A', 
