@@ -111,7 +111,7 @@ const setChartData = () => {
                 data: [65, 59, 80, 81, 56, 55, 40, 42, 14, 55, 51, 61, 66, 17, 8, 72, 42]
             },
             {
-                label: 'Total',
+                label: 'Total number of Surveys',
                 backgroundColor: documentStyle.getPropertyValue('--gray-500'),
                 borderColor: documentStyle.getPropertyValue('--gray-500'),
                 data: [65, 59, 80, 81, 56, 55, 40, 42, 14, 55, 51, 61, 66, 17, 8, 72, 42]
