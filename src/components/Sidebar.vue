@@ -6,10 +6,6 @@
 	<h3>Progress Monitoring System</h3>
 	<i class="pi pi-user" style="font-size: 2rem padding: auto; padding-bottom: 2rem;"></i>
 
-	<!-- Gravatar input <div v-if="gravatarURL">
-      <img :src="gravatarURL" alt="Gravatar Image" class="rounded-image"/>
-    </div> -->
-
 
 	<div class="menu-toggle-wrap">
 		<button class="menu-toggle" @click="ToggleMenu">
@@ -45,14 +41,6 @@
 			<span class="text">Settings</span>
 		</router-link>
 	</div>
-
-	<div class="menu">
-		<router-link class="button" to="/logout">
-			<span class="material-icons">logout</span>
-			<span class="text">Logout</span>
-		</router-link>
-	</div>
-	
 </aside>
 </template>
 
