@@ -75,7 +75,7 @@ import { ref, onMounted, computed, inject, DeprecationTypes } from 'vue'
 import { LMap, LTileLayer, LGeoJson, LControl, LControlZoom } from "@vue-leaflet/vue-leaflet";
 import "leaflet/dist/leaflet.css"
 import Chart from 'primevue/chart';
-
+// import heatLayer from '@heatLayer' parked for later
 
 
 
@@ -211,22 +211,24 @@ const onEachFeatureFunction = computed(() => {
             color: "black",
           });
         }else{
-          let attributeValue = feature.properties.Reg;
+          let statusValue = feature.properties.Status;
           let color;
-            if (attributeValue == '01') {
-              color = "#539dcc"; //value of created data ituro sa data yung color na magegenerate ng map.
-            } else if (attributeValue == '02') {
-              color = "#f8fbff";
-            } else if (attributeValue == '03') {
-              color = "#d1e2f2";
-            } else if (attributeValue == '04') {
-              color = "#9ac8e0";
-            } else if (attributeValue == '05') {
-              color = "#539dcc";
-            } else if (attributeValue == '06') {
-              color = "#1d6cb1";
+          if (statusValue === '100') { 
+            color = "#ff0000"
+          }else if (statusValue >= '86' && statusValue !== '99') {
+            color = "#E1BEE7";
+            } else if (statusValue >= '72' && statusValue <= '85') {
+                color = "#0018F9";
+          } else if (statusValue >= '52' && statusValue <= '71') {
+                color = "#1134A6";
+            } else if (statusValue >= '40' && statusValue <= '51') {
+                color = "#0080FE";
+            } else if (statusValue >= '10' && statusValue <= '39') {
+                color = "#008ECC";
+            } else if (statusValue >= '0' && statusValue <= '19') {
+                color = "#73C2FB";
             } else {
-              color = "#093168";
+                color = "ffffff"; 
             }
           layer.setStyle({
             fillColor: color,
@@ -237,7 +239,7 @@ const onEachFeatureFunction = computed(() => {
           });
           layer.on('mouseover', () => {
             layer.setStyle({
-              color: 'purple',
+              color: '#E1BEE7',
               weight: 5,
               fillOpacity: 2,
               opacity: 3
@@ -251,12 +253,13 @@ const onEachFeatureFunction = computed(() => {
               opacity: 1
             });
           });
-          layer.bindTooltip(feature.properties.Name,{ permanent: false, sticky: true });
+          layer.bindTooltip(feature.properties.Name + ' <br>Interview Status: ' + feature.properties.Status,{ permanent: false, sticky: false });
+        
       }
     };
   });
 
-
+  
 
 const options = computed(() => ({
       onEachFeature: onEachFeatureFunction.value,
@@ -264,9 +267,6 @@ const options = computed(() => ({
     
   }));
 
-
-  
-  
 onMounted(fetchGeojson);
 
 
