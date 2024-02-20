@@ -216,7 +216,7 @@ const onEachFeatureFunction = computed(() => {
           if (statusValue === '100') { 
             color = "#ff0000"
           }else if (statusValue >= '86' && statusValue !== '99') {
-            color = "#E1BEE7";
+            color = "#ff0000";
             } else if (statusValue >= '72' && statusValue <= '85') {
                 color = "#0018F9";
           } else if (statusValue >= '52' && statusValue <= '71') {
